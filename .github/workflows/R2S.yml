@@ -34,11 +34,11 @@ jobs:
         cd "/home/runner/immortalwrt"
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        patch -p1 < "${GITHUB_WORKSPACE}/patches/18.06-modify_for_r2s.patch"
+        patch -p1 < "${GITHUB_WORKSPACE}/patches/1806-modify_for_r2s.patch"
     - name: Build ImmortalWrt-18.06
       run: |
         cd "/home/runner/immortalwrt"
-        cp -f "${GITHUB_WORKSPACE}/configs/18.06-config.seed" ".config"
+        cp -f "${GITHUB_WORKSPACE}/configs/1806-config.seed" ".config"
         make defconfig
         make -j$[$(nproc)+1]
         mv -f "bin/targets/rockchip/armv8/immortalwrt-rockchip-armv8-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz" "../immortalwrt-18.06-rockchip-armv8-friendlyarm_nanopi-r2s-ext4-sysupgrade.img.gz"
